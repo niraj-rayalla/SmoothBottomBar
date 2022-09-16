@@ -598,6 +598,14 @@ class SmoothBottomBar @JvmOverloads constructor(
     }
 
     /**
+     * Sets the items programmatically instead of using [itemMenuRes].
+     */
+    fun setItems(items: List<BottomBarItem>) {
+        this.items = items
+        invalidate()
+    }
+
+    /**
      * Created by Vladislav Perevedentsev on 29.07.2020.
      *
      * Just call [SmoothBottomBar.setOnItemSelectedListener] to override [onItemSelectedListener]
