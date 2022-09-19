@@ -345,9 +345,7 @@ class SmoothBottomBar @JvmOverloads constructor(
         }
     }
 
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-
+    private fun layoutItems() {
         var lastX = barSideMargins
         itemWidth = (width - (barSideMargins * 2)) / items.size
 
@@ -376,6 +374,18 @@ class SmoothBottomBar @JvmOverloads constructor(
 
         // Set initial active item
         applyItemActiveIndex()
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+
+        this.layoutItems()
+    }
+
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        super.onLayout(changed, left, top, right, bottom)
+
+        this.layoutItems()
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -602,6 +612,7 @@ class SmoothBottomBar @JvmOverloads constructor(
      */
     fun setItems(items: List<BottomBarItem>) {
         this.items = items
+        requestLayout()
         invalidate()
     }
 
