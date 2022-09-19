@@ -612,6 +612,7 @@ class SmoothBottomBar @JvmOverloads constructor(
      */
     fun setItems(items: List<BottomBarItem>) {
         this.items = items
+        exploreByTouchHelper = AccessibleExploreByTouchHelper(this, items, ::onClickAction)
         requestLayout()
         invalidate()
     }
